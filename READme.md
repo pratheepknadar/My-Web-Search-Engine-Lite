@@ -20,3 +20,14 @@ A functional, local search engine built using Python and the Common Crawl public
 2. **Indexer:** Parses raw text and builds a local inverted index.
 3. **Search Engine:** Executes keyword matching and relevancy ranking.
 4. **Web UI:** A clean Flask-based front-end for user interaction.
+
+## 🛠 Project Structure Explained
+run.py: The entry point. It triggers the downloader and feeds data into the indexer.
+
+src/downloader.py: Handles the HTTP stream from Common Crawl.
+
+src/indexer.py: Creates the SQLite FTS5 tables and saves the text.
+
+src/engine.py: Contains the logic for BM25 ranking and keyword matching.
+
+src/web_ui.py: The Flask application that renders the search bar.
