@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CC Search Lite</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; }
+        .search-box { width: 100%; padding: 10px; font-size: 18px; }
+        .result { margin-bottom: 30px; }
+        .result a { font-size: 20px; color: #1a0dab; text-decoration: none; }
+        .result .url { color: #006621; font-size: 14px; display: block; }
+        .result .snippet { color: #545454; font-size: 14px; }
+        b { color: black; } /* Highlights from our SQLite snippet */
+    </style>
+</head>
+<body>
+    <h1>🔎 My Web Search Engine</h1>
+    <form action="/search" method="get">
+        <input type="text" name="q" class="search-box" placeholder="Search the web..." value="{{ query }}">
+    </form>
+    <hr>
+    {% if results %}
+        {% for res in results %}
+        <div class="result">
+            <a href="{{ res.url }}">{{ res.title }}</a>
+            <span class="url">{{ res.url }}</span>
+            <p class="snippet">{{ res.snippet | safe }}</p>
+        </div>
+        {% endfor %}
+    {% elif query %}
+        <p>No results found for "{{ query }}".</p>
+    {% endif %}
+</body>
+</html>
